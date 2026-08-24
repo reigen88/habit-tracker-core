@@ -1,0 +1,14 @@
+{
+  "name": "habit-tracker-core",
+  "version": "0.1.0",
+  "description": "Domain core for habit tracking — no UI, no framework",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "test:cov": "node --test --experimental-test-coverage",
+    "start": "node src/index.js"
+  },
+  "license": "MIT"
+}
