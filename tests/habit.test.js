@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHabit } from '../src/core/habit.js';
 
-test('createHabit returns object with title', () => {
-  assert.equal(createHabit({ title: 'Read' }).title, 'Read');
+test('goalPerDay по умолчанию равен 1', () => {
+  const h = createHabit({ title: 'Читать' });
+  assert.equal(h.goalPerDay, 1);
 });
