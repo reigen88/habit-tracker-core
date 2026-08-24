@@ -5,12 +5,15 @@ export function createHabit(input) {
         throw new Error('Title is required.');
     };
 
-    return {
-        id: crypto.randomUUID(),
+    const goalPerDay = input.goalPerDay ?? 1;
+    const id = input.id ?? crypto.randomUUID();
+    const createdAt = input.createdAt ?? new Date().toISOString();
+    return Object.freeze({
+        id,
         title, 
-        goalPerDay: 1,
-        createdAt: new Date().toISOString(),
+        goalPerDay,
+        createdAt,
         archivedAt: null, 
         log: {},
-    };
+    });
 }
