@@ -1,4 +1,4 @@
-export function createHabit(input) {
+export function createHabit(input = {}) {
     const title = (input.title ?? '').trim();
 
     if (title === '') {
