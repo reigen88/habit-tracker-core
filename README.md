@@ -1,9 +1,9 @@
 # Habit Tracker Core
 
-Доменное ядро трекера привычек. Без UI, без фреймворков, без внешних зависимостей.
+Domain core of a habit tracker. No UI, no frameworks, no external dependencies.
 
-## Стек
+## Stack
 Node 22+, ESM, node:test
 
-## Запуск
+## Running
 npm test
