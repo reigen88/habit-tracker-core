@@ -1,4 +1,5 @@
 export function createHabit(input = {}) {
+
     const title = (input.title ?? '').trim();
 
     if (title === '') {
@@ -19,7 +20,9 @@ export function createHabit(input = {}) {
     });
 };
 
+
 export function renameHabit(habit, newTitle) {
+
     const title = (newTitle ?? '').trim();
     if (title === '') {
         throw new Error('Title is required.');
@@ -30,7 +33,9 @@ export function renameHabit(habit, newTitle) {
     return newHabit;
 };
 
+
 export function markDay(habit, dateKey, count = 1) {
+
     const newDate = (dateKey ?? '').trim();
     if (newDate === '') {
         throw new Error('Date is required');
@@ -41,3 +46,18 @@ export function markDay(habit, dateKey, count = 1) {
     const newHabit = Object.freeze({...habit, log});
     return newHabit;
 }
+
+
+export function unmarkDay(habit, dateKey) {
+
+    const newDate = (dateKey ?? '').trim();
+    if (newDate === '') {
+        throw new Error('Date is required');
+    }
+
+    const { [newDate]: removed, ...editedLog} = habit.log;
+
+    const newHabit = Object.freeze({...habit, log: editedLog});
+
+    return newHabit;
+};
