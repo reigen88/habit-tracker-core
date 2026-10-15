@@ -1,20 +1,20 @@
-// Create copy of structuredClone() function 
+export function cloneDeep(value) {
 
-export function cloneDeep(source) {
-
- if (typeof source !== 'object' || source === null) {
-   return source;
- }
-
- if (Array.isArray(source)) {
-   return source.map(item => cloneDeep(item));
- }
-
-   const result = {};
-
-   for (const [key, val] of Object.entries(source)) {
-      result[key] = cloneDeep(val);
+   if (typeof value !== 'object' || value === null) {
+      return value;
    }
 
-   return result
-};
+
+   if (Array.isArray(value)) {
+      return value.map(item => cloneDeep(item));
+   }
+
+
+   const result = {};
+   const entries = Object.entries(value);
+
+   for (const [key, val] of entries) {
+      result[key] = cloneDeep(val);
+   }
+   return result;
+}
