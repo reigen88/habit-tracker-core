@@ -9,6 +9,18 @@ export function cloneDeep(value) {
       return value.map(item => cloneDeep(item));
    }
 
+   if (value instanceof Date) {
+      return new Date(value);
+   }
+
+   if (value instanceof Map) {
+      const entries = [...value];
+      const clonedEntries = entries.map(item => cloneDeep(item));
+      const result = new Map(clonedEntries)
+
+      return result;
+   }
+
 
    const result = {};
    const entries = Object.entries(value);
