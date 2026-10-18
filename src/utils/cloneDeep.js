@@ -1,12 +1,19 @@
-export function cloneDeep(value) {
+export function cloneDeep(value, seen = new WeakMap()) {
+   if (seen.has(value)) { return seen.get(value) }
 
    if (typeof value !== 'object' || value === null) {
       return value;
    }
 
-
    if (Array.isArray(value)) {
-      return value.map(item => cloneDeep(item));
+      const result = []; 
+      seen.set(value, result);
+
+      for (const val of value) {
+         result.push(cloneDeep(val, seen));
+      }
+
+      return result;
    }
 
    if (value instanceof Date) {
@@ -14,9 +21,25 @@ export function cloneDeep(value) {
    }
 
    if (value instanceof Map) {
+      const result = new Map();
+      seen.set(value, result);
+
       const entries = [...value];
-      const clonedEntries = entries.map(item => cloneDeep(item));
-      const result = new Map(clonedEntries)
+
+      for (const [key, val] of entries) {
+         result.set(cloneDeep(key, seen), cloneDeep(val, seen));
+      }
+
+      return result;
+   }
+
+   if (value instanceof Set) {
+      const result = new Set();
+      seen.set(value, result);
+
+      for (const val of value) {
+         result.add(cloneDeep(val, seen))
+      }
 
       return result;
    }
@@ -24,9 +47,11 @@ export function cloneDeep(value) {
 
    const result = {};
    const entries = Object.entries(value);
+   seen.set(value, result)
 
    for (const [key, val] of entries) {
-      result[key] = cloneDeep(val);
+      result[key] = cloneDeep(val, seen);
    }
+
    return result;
 }
