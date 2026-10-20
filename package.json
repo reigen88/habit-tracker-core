@@ -3,12 +3,24 @@
   "version": "0.1.0",
   "description": "Domain core for habit tracking — no UI, no framework",
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "node --test",
     "test:watch": "node --test --watch",
     "test:cov": "node --test --experimental-test-coverage",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10"
+  }
 }
