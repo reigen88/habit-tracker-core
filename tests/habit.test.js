@@ -92,3 +92,11 @@ test('unmarkDay does not fail on missing date', () => {
 
   assert.equal(h3.log['2026-08-24'], 1);
 });
+
+test('markDay rejects non-positive-integer count', () => {
+  const invalidValues = [-1, 0, 0.5, '1'];
+  for (const count of invalidValues) {
+    const habit = createHabit({ title: 'Read' });
+    assert.throws(() => markDay(habit, '2099-01-01', count));
+  }
+});

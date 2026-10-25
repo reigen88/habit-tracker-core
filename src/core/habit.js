@@ -35,6 +35,9 @@ export function markDay(habit, dateKey, count = 1) {
   if (newDate === '') {
     throw new Error('Date is required');
   }
+  if (!Number.isInteger(count) || count <= 0) {
+    throw new Error('Count must be a positive integer');
+  }
 
   const log = { ...habit.log, [newDate]: count };
 
