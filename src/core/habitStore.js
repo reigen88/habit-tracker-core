@@ -20,8 +20,8 @@ export function createHabitStore() {
       return deepFreeze(cloneDeep(storage.get(id)));
     },
     getAll: function () {
-      const values = storage.values();
-      const habitList = Array.from(values);
+      const habits = storage.values();
+      const habitList = Array.from(habits);
 
       return deepFreeze(cloneDeep(habitList));
     },
